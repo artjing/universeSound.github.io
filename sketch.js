@@ -188,7 +188,7 @@ function draw() {
       noFill()
 
       //fill(random(255),random(255),random(255),255);
-      bezier(a.position.x*2, a.position.y*2,a.position.x*2 + random(50), a.position.y*2+random(50),b.position.x*2+random(50),b.position.x*2 +random(50) , b.position.x*2, b.position.y*2);
+      bezier(a.position.x+150, a.position.y,a.position.x + random(50)+150, a.position.y+random(50),b.position.x+random(50)+150,b.position.x +random(50) , b.position.x+150, b.position.y);
       
       //ellipse(a.position.x, a.position.y, 16, 16);
       //line(a.position.x, a.position.y, b.position.x, b.position.y);
@@ -204,8 +204,16 @@ function draw() {
         const note = random(["A3", "A3"]); 
         synth.triggerAttackRelease(note , '8n');
       
+    }else if((wristR<450 && wristR>445) || (wristL<400 && wristL>390)){
+        const note =random(["B2", "B2"]); 
+        synth.triggerAttackRelease(note , '8n');
+
     }else if((wristR<400 && wristR>395) || (wristL<400 && wristL>390)){
         const note =random(["C4", "C4"]); 
+        synth.triggerAttackRelease(note , '8n');
+
+    }else if((wristR<350 && wristR>345) || (wristL<400 && wristL>390)){
+        const note =random(["C2", "C2"]); 
         synth.triggerAttackRelease(note , '8n');
 
     }else if((wristR<300 && wristR>295) || (wristL<300 && wristL>290)){
