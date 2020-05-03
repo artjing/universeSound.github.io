@@ -218,23 +218,10 @@ function draw() {
   
   
   push();
-  
 
-  // title
-  textSize(32);
-  fill(255);
-  text("Resonance & Universe", 50,60);
   
-  textSize(12);
-  fill(255,80);
-  text("Dancing", 50,80);
-  text("Following the sound", 50,95);
-
   
   /*
-  // draw rect
-  fill(255);
-  rect(35, iconH+200, 6, 50);
   
   // title
   textSize(32);
@@ -279,7 +266,6 @@ for (let i = 0; i < skeleton.length; i++) {
   }
     
   }
-  
   */
   pop();
   frameRate(30);
@@ -308,6 +294,21 @@ for (let i = 0; i < skeleton.length; i++) {
   }else{
     drums.stop();
   }}
+  
+    
+  // draw rect
+  fill(255);
+  rect(35, iconH+300, 6, 50);
+
+  // title
+  textSize(32);
+  fill(255);
+  text("Resonance & Universe", 50,60);
+  
+  textSize(12);
+  fill(255,80);
+  text("Dancing", 50,80);
+  text("Following the sound", 50,95);
 }
 
 function brainLoaded() {

@@ -200,25 +200,25 @@ function draw() {
     
     // pattern one 
 
-    if((wristR<500 && wristR>490) || (wristL<500 && wristL>490)){
+    if((wristR<500 && wristR>495) || (wristL<500 && wristL>490)){
         const note = random(["A3", "A3"]); 
-        //synth.triggerAttackRelease(note , '5n');
+        synth.triggerAttackRelease(note , '8n');
       
-    }else if((wristR<400 && wristR>390) || (wristL<400 && wristL>390)){
+    }else if((wristR<400 && wristR>395) || (wristL<400 && wristL>390)){
         const note =random(["C4", "C4"]); 
-        synth.triggerAttackRelease(note , '5n');
+        synth.triggerAttackRelease(note , '8n');
 
-    }else if((wristR<300 && wristR>290) || (wristL<300 && wristL>290)){
+    }else if((wristR<300 && wristR>295) || (wristL<300 && wristL>290)){
         const note =random(["D4", "D4"]); 
-        synth.triggerAttackRelease(note , '5n');
+        synth.triggerAttackRelease(note , '8n');
 
-    }else if((wristR<200 && wristR>190) || (wristL<200 && wristL>190)){
+    }else if((wristR<200 && wristR>195) || (wristL<200 && wristL>190)){
         const note =random(["E3", "E3"]); 
-        synth.triggerAttackRelease(note , '5n');
+        synth.triggerAttackRelease(note , '8n');
 
-    }else if((wristR<100 && wristR>90) || (wristL<100 && wristL>90)){
+    }else if((wristR<100 && wristR>95) || (wristL<100 && wristL>90)){
         const note =random(["G4", "G4"]); 
-        synth.triggerAttackRelease(note , '5n');
+        synth.triggerAttackRelease(note , '8n');
     }
 
     
@@ -230,6 +230,7 @@ function draw() {
   let b = bSlider.value();
   //background(r, g, b, 100);
 
+  frameRate(10);
 }
 
 function brainLoaded() {
