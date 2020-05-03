@@ -278,7 +278,6 @@ async function gotResult(error, results) {
   bSlider.value(b);
   predictColor();
   
-  background(r,g,b,2);
   if(isStart == 0) {
   
     if(r>150){
