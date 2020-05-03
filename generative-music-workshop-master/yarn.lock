@@ -1334,12 +1334,6 @@ performance-now@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-0.2.0.tgz#33ef30c5c77d4ea21c5a53869d91b56d8f2555e5"
 
-piano@tambien/Piano:
-  version "1.0.0"
-  resolved "https://codeload.github.com/tambien/Piano/tar.gz/f2e66e9151a166bbbfe7add54d1ef143376f2611"
-  dependencies:
-    tone "^0.8.0"
-
 piano@teropa/Piano#tone10:
   version "1.0.0"
   resolved "https://codeload.github.com/teropa/Piano/tar.gz/6e160ab9e460ab3fee5bc22feb124fce454152c4"
@@ -1726,8 +1720,8 @@ string_decoder@~1.0.3:
     safe-buffer "~5.1.0"
 
 stringstream@~0.0.4:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/stringstream/-/stringstream-0.0.5.tgz#4e484cd4de5a0bbbee18e46307710a8a81621878"
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/stringstream/-/stringstream-0.0.6.tgz#7880225b0d4ad10e30927d167a1d6f2fd3b33a72"
 
 strip-ansi@^3.0.0, strip-ansi@^3.0.1:
   version "3.0.1"
@@ -1784,10 +1778,6 @@ to-array@0.1.4:
 tone@^0.10.0:
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/tone/-/tone-0.10.0.tgz#c8558a29459e2124222a27ebf17bbdbeeb36e7d6"
-
-tone@^0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/tone/-/tone-0.8.0.tgz#15c3300383be662d223c2d6fede5f2b4464c0e1e"
 
 tough-cookie@~2.3.0:
   version "2.3.2"
