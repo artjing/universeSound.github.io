@@ -188,7 +188,7 @@ function draw() {
       noFill()
 
       //fill(random(255),random(255),random(255),255);
-      bezier(a.position.x*1.2+150, a.position.y,a.position.x*1.2 + random(50)+150, a.position.y+random(50),b.position.x*1.2+random(50)+150,b.position.x +random(50) , b.position.x*1.2+150, b.position.y);
+      bezier(a.position.x*1.2+width*0.2, a.position.y,a.position.x*1.2 + random(50)+width*0.2, a.position.y+random(50),b.position.x*1.2+random(50)+width*0.2,b.position.x +random(50) , b.position.x*1.2+width*0.2, b.position.y);
       
       //ellipse(a.position.x, a.position.y, 16, 16);
       //line(a.position.x, a.position.y, b.position.x, b.position.y);
@@ -197,38 +197,37 @@ function draw() {
     let wristR = pose.rightWrist.x;
     let wristL = pose.leftWrist.x;
     
-    
+    console.log(wristR,'====',wristL);
     // pattern one 
 
-    if((wristR<500 && wristR>495) || (wristL<500 && wristL>490)){
+    if((wristR<500 && wristR>497) || (wristL<500 && wristL>497)){
         const note = random(["A3", "A3"]); 
         synth.triggerAttackRelease(note , '8n');
       
-    }else if((wristR<450 && wristR>445) || (wristL<400 && wristL>390)){
+    }else if((wristR<450 && wristR>440) || (wristL<400 && wristL>390)){
         const note =random(["B2", "B2"]); 
         synth.triggerAttackRelease(note , '8n');
 
-    }else if((wristR<400 && wristR>395) || (wristL<400 && wristL>390)){
+    }else if((wristR<400 && wristR>390) || (wristL<400 && wristL>390)){
         const note =random(["C4", "C4"]); 
         synth.triggerAttackRelease(note , '8n');
 
-    }else if((wristR<350 && wristR>345) || (wristL<400 && wristL>390)){
+    }else if((wristR<350 && wristR>340) || (wristL<400 && wristL>390)){
         const note =random(["C2", "C2"]); 
         synth.triggerAttackRelease(note , '8n');
 
-    }else if((wristR<300 && wristR>295) || (wristL<300 && wristL>290)){
+    }else if((wristR<300 && wristR>290) || (wristL<300 && wristL>290)){
         const note =random(["D4", "D4"]); 
         synth.triggerAttackRelease(note , '8n');
 
-    }else if((wristR<200 && wristR>195) || (wristL<200 && wristL>190)){
+    }else if((wristR<200 && wristR>190) || (wristL<200 && wristL>190)){
         const note =random(["E3", "E3"]); 
         synth.triggerAttackRelease(note , '8n');
 
-    }else if((wristR<100 && wristR>95) || (wristL<100 && wristL>90)){
+    }else if((wristR<100 && wristR>90) || (wristL<100 && wristL>90)){
         const note =random(["G4", "G4"]); 
         synth.triggerAttackRelease(note , '8n');
     }
-
     
   }
   pop();
