@@ -128,8 +128,7 @@ async function setup() {
 
   video = createCapture(VIDEO);
   video.hide();
-  translate(video.width, 0);
-  scale(-1, 1);
+
   //image(video, width - 150, 0, width, height);
   console.log('视频的大小是',video.width,'===',video.width);
   poseNet = ml5.poseNet(video, modelLoaded);
@@ -219,7 +218,8 @@ function draw() {
   
   push();
 
-  
+  translate(video.width, 0);
+  scale(-1, 1);  
   
   /*
   
@@ -295,20 +295,7 @@ for (let i = 0; i < skeleton.length; i++) {
     drums.stop();
   }}
   
-    
-  // draw rect
-  fill(255);
-  rect(35, iconH+300, 6, 50);
-
-  // title
-  textSize(32);
-  fill(255);
-  text("Resonance & Universe", 50,60);
   
-  textSize(12);
-  fill(255,80);
-  text("Dancing", 50,80);
-  text("Following the sound", 50,95);
 }
 
 function brainLoaded() {
@@ -608,6 +595,21 @@ function drawMetrix(){
   stroke('white');
   strokeWeight(0.5);
   
+    // draw rect
+  fill(255);
+  rect(35, iconH+300, 6, 50);
+
+  // title
+  textSize(32);
+  fill(255);
+  text("Resonance & Universe", 50,60);
+  
+  textSize(12);
+  fill(255,80);
+  text("Dancing", 50,80);
+  text("Following the sound", 50,95);
+  
+  
   for(let i =0; i< beatLength; i++){
     
     if(hPat[i]==1){
@@ -679,14 +681,14 @@ function drawMetrix(){
 function sequence(time, beatIndex){
   setTimeout(()=>{}, time*1000);
   drawMetrix();
-  drawPlayhead(beatIndex);
+  //drawPlayhead(beatIndex);
 }
 
-function drawPlayhead(beatIndex){
-  stroke('white');
-  fill(255, 20);
-  rect((beatIndex-1)*cellWidth+leftW, 0+topH, cellWidth, drumH);
-}
+// function drawPlayhead(beatIndex){
+//   stroke('white');
+//   fill(255, 20);
+//   rect((beatIndex-1)*cellWidth+leftW, 0+topH, cellWidth, drumH);
+// }
 
 function linePageClicked(){
     window.location.href="index.html"

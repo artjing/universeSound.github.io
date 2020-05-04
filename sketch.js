@@ -188,7 +188,7 @@ function draw() {
       noFill()
 
       //fill(random(255),random(255),random(255),255);
-      bezier(a.position.x*1.2+250, a.position.y*1.2,a.position.x*1.2 + random(50)+250, a.position.y*1.2+random(50),b.position.x*1.2+random(50)+250,b.position.x*1.2 +random(50) , b.position.x*1.2+250, b.position.y*1.2);
+      bezier(a.position.x*1.2+150, a.position.y,a.position.x*1.2 + random(50)+150, a.position.y+random(50),b.position.x*1.2+random(50)+150,b.position.x +random(50) , b.position.x*1.2+150, b.position.y);
       
       //ellipse(a.position.x, a.position.y, 16, 16);
       //line(a.position.x, a.position.y, b.position.x, b.position.y);
@@ -324,7 +324,7 @@ function planetClicked(){
   
   if(isPlanetClicked == 1){
     
-    let posY = 70;
+    let posY = iconH;
     mars.position(50+50+20,posY);
     jupiter.position(50+100+40,posY);
     saturn.position(50+150+60,posY);

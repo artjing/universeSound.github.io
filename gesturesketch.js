@@ -42,7 +42,8 @@ let fxV = 0.5;
 const notes = [ 'C5', 'A3', 'D4', 'G4', 'A4', 'F4' ];
 let isStart;
 
-
+let posePattern;
+let lastPosePattern;
 async function setup() {
   
   createCanvas(windowWidth, windowHeight);
@@ -54,16 +55,16 @@ async function setup() {
 
   video = createCapture(VIDEO);
   video.hide();
-  translate(video.width, 0);
-  scale(-1, 1);
   
   poseNet = ml5.poseNet(video, modelLoaded);
   poseNet.on('pose', gotPoses);
 
   let options = {
+    inputs: 34,
+    outputs: 4,
+    task: 'classification',
     debug: true
   }
-  
   
   brain = ml5.neuralNetwork(options);
   const modelInfo = {
@@ -179,7 +180,10 @@ function draw() {
   
   
   push();
-
+  
+  translate(video.width, 0);
+  scale(-1, 1);
+  
   //image(video, width - 150, 0, 100, 80);
   background(0);
   
@@ -215,10 +219,10 @@ function draw() {
 for (let i = 0; i < skeleton.length; i++) {
       let a = skeleton[i][0];
       let b = skeleton[i][1];
-      strokeWeight(1);
+      strokeWeight(5);
       stroke(255);
       fill(255,50);
-      //line(a.position.x, a.position.y,b.position.x,b.position.y);            translate(0,-10);
+      line(a.position.x, a.position.y,b.position.x,b.position.y);            translate(0,-10);
       
       strokeWeight(0.5);
       noFill();
@@ -253,7 +257,6 @@ function brainLoaded() {
 
 function predictColor() {
   if (pose) {
-
     let inputs = [];
     for (let i = 0; i < pose.keypoints.length; i++) {
       let x = pose.keypoints[i].position.x;
@@ -261,7 +264,7 @@ function predictColor() {
       inputs.push(x);
       inputs.push(y);
     }
-    brain.predict(inputs, gotResult);
+    brain.classify(inputs, gotResult);
   } else {
     setTimeout(predictColor, 100);
   }
@@ -269,18 +272,18 @@ function predictColor() {
 
 async function gotResult(error, results) {
   
-  //console.log(results);
-  let r = results[0].value;
-  let g = results[1].value;
-  let b = results[2].value;
-  rSlider.value(r);
-  gSlider.value(g);
-  bSlider.value(b);
+  console.log('getResult===');
+
+  if (results[0].confidence > 0.75) {
+    poseLabel = results[0].label.toUpperCase();
+  }
+  console.log(poseLabel);
+  
   predictColor();
   
-  if(isStart == 0) {
-  
-    if(r>150){
+  posePattern = poseLabel;
+  if(lastPosePattern == posePattern) {
+  }else{
     if (synthDelay) synthDelay.triggerAttack(random(notes));
     isStart =1;
     synthDelay.triggerRelease();
@@ -288,7 +291,7 @@ async function gotResult(error, results) {
     await delay(400);
     isStart =0;
   }
-  }
+  lastPosePattern = poseLabel;
 }
 
 function gotPoses(poses) {
