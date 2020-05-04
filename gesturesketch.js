@@ -180,8 +180,7 @@ function draw() {
   
   
   push();
-  translate(video.width, 0);
-  scale(-1, 1);
+
   //image(video, width - 150, 0, 100, 80);
   background(0);
   
@@ -200,7 +199,8 @@ function draw() {
   text("Dancing", 50,80);
   text("Following the sound", 50,95);
 
-
+  translate(video.width, 0);
+  scale(-1, 1);
   //noFill()
   
   // draw pose
