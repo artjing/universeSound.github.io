@@ -211,13 +211,13 @@ function draw() {
       let y = pose.keypoints[i].position.y;
       fill(255,255,255,random(255));
       //ellipse(x,y,random(50),random(50));
-      rect(x, y, random(12), random(100));
+      rect(x, y, random(30), random(100));
   }
     
 for (let i = 0; i < skeleton.length; i++) {
       let a = skeleton[i][0];
       let b = skeleton[i][1];
-      strokeWeight(5);
+      strokeWeight(1);
       stroke(255);
       fill(255,50);
       line(a.position.x, a.position.y,b.position.x,b.position.y);            translate(0,-10);
