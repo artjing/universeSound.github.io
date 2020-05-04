@@ -180,10 +180,8 @@ function draw() {
   
   
   push();
-  
   translate(video.width, 0);
   scale(-1, 1);
-  
   //image(video, width - 150, 0, 100, 80);
   background(0);
   
