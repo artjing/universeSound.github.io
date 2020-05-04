@@ -238,14 +238,6 @@ for (let i = 0; i < skeleton.length; i++) {
   }
   pop();
 
-  let r = rSlider.value();
-  let g = gSlider.value();
-  let b = bSlider.value();
-  //background(r, g, b, 100);
-
-  // delay soudn
-  // filter.frequency.value = lerp(filterMin, filterMax, fxU);
-  // effect.wet.value = fxV;  
 }
 
 function brainLoaded() {
@@ -280,12 +272,11 @@ async function gotResult(error, results) {
   predictColor();
   
   posePattern = poseLabel;
-  if(lastPosePattern == posePattern) {
+  if(lastPosePattern == posePattern && isStart ===0) {
   }else{
     if (synthDelay) synthDelay.triggerAttack(random(notes));
     isStart =1;
     synthDelay.triggerRelease();
-
     await delay(400);
     isStart =0;
   }
