@@ -269,10 +269,10 @@ for (let i = 0; i < skeleton.length; i++) {
   */
   pop();
   frameRate(30);
+  background(0);
+
   canvasPressedNew();
   
-  
-
   // draw pose
   if (pose) {
   wristRX = pose.rightWrist.x*2;  
@@ -295,6 +295,20 @@ for (let i = 0; i < skeleton.length; i++) {
     drums.stop();
   }}
   
+    
+  // draw rect
+  fill(255);
+  rect(35, iconH+300, 6, 50);
+
+  // title
+  textSize(32);
+  fill(255);
+  text("Resonance & Universe", 50,60);
+  
+  textSize(12);
+  fill(255,80);
+  text("Dancing", 50,80);
+  text("Following the sound", 50,95);
   
 }
 
@@ -576,7 +590,6 @@ function canvasPressed(){
 
 function drawMetrix(){
   
-  background(0);
 
   
   stroke('white');
@@ -594,21 +607,6 @@ function drawMetrix(){
   noStroke();
   stroke('white');
   strokeWeight(0.5);
-  
-    // draw rect
-  fill(255);
-  rect(35, iconH+300, 6, 50);
-
-  // title
-  textSize(32);
-  fill(255);
-  text("Resonance & Universe", 50,60);
-  
-  textSize(12);
-  fill(255,80);
-  text("Dancing", 50,80);
-  text("Following the sound", 50,95);
-  
   
   for(let i =0; i< beatLength; i++){
     
