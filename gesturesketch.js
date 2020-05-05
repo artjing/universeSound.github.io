@@ -269,7 +269,7 @@ async function gotResult(error, results) {
   }
   console.log(poseLabel);
   
-  predictColor();
+  setTimeout(predictColor, 100);
   
   posePattern = poseLabel;
   if(lastPosePattern == posePattern && isStart ===0) {

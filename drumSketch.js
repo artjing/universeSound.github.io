@@ -139,13 +139,13 @@ async function setup() {
   }
   
   
-  brain = ml5.neuralNetwork(options);
-  const modelInfo = {
-    model: 'model/model.json',
-    metadata: 'model/model_meta.json',
-    weights: 'model/model.weights.bin',
-  };
-  brain.load(modelInfo, brainLoaded);
+  // brain = ml5.neuralNetwork(options);
+  // const modelInfo = {
+  //   model: 'model/model.json',
+  //   metadata: 'model/model_meta.json',
+  //   weights: 'model/model.weights.bin',
+  // };
+  // brain.load(modelInfo, brainLoaded);
   
   // sequences sound setting
   isPlanetClicked = 1;
@@ -187,7 +187,6 @@ async function setup() {
   saturn.size(50,50);
   saturn.mousePressed(saturnClicked);
   
-
   
   uranus = createImg('images/Uranus.png');
   uranus.position(-100,-100);
@@ -287,14 +286,13 @@ for (let i = 0; i < skeleton.length; i++) {
 
   }
   
-  
+
   if(hh.isLoaded() && clap.isLoaded() && bass.isLoaded()){
   if(!drums.isPlaying){
     drums.loop();
   }else{
     drums.stop();
   }}
-  
     
   // draw rect
   fill(255);
@@ -312,50 +310,50 @@ for (let i = 0; i < skeleton.length; i++) {
   
 }
 
-function brainLoaded() {
-  console.log('pose predicting ready!');
-  predictColor();
-}
+// function brainLoaded() {
+//   console.log('pose predicting ready!');
+//   predictColor();
+// }
 
-function predictColor() {
-  if (pose) {
+// function predictColor() {
+//   if (pose) {
 
-    let inputs = [];
-    for (let i = 0; i < pose.keypoints.length; i++) {
-      let x = pose.keypoints[i].position.x;
-      let y = pose.keypoints[i].position.y;
-      inputs.push(x);
-      inputs.push(y);
-    }
-    brain.predict(inputs, gotResult);
-  } else {
-    setTimeout(predictColor, 100);
-  }
-}
+//     let inputs = [];
+//     for (let i = 0; i < pose.keypoints.length; i++) {
+//       let x = pose.keypoints[i].position.x;
+//       let y = pose.keypoints[i].position.y;
+//       inputs.push(x);
+//       inputs.push(y);
+//     }
+//     brain.predict(inputs, gotResult);
+//   } else {
+//     setTimeout(predictColor, 100);
+//   }
+// }
 
-async function gotResult(error, results) {
+// async function gotResult(error, results) {
   
-  //console.log(results);
-  let r = results[0].value;
-  let g = results[1].value;
-  let b = results[2].value;
-  rSlider.value(r);
-  gSlider.value(g);
-  bSlider.value(b);
-  predictColor();
+//   //console.log(results);
+//   let r = results[0].value;
+//   let g = results[1].value;
+//   let b = results[2].value;
+//   rSlider.value(r);
+//   gSlider.value(g);
+//   bSlider.value(b);
+//   setTimeout(predictColor, 100);
   
-  if(isStart == 0) {
+//   if(isStart == 0) {
   
-    if(r>150){
-    if (synthDelay) synthDelay.triggerAttack(random(notes));
-    isStart =1;
-    synthDelay.triggerRelease();
+//     if(r>150){
+//     if (synthDelay) synthDelay.triggerAttack(random(notes));
+//     isStart =1;
+//     synthDelay.triggerRelease();
 
-    await delay(400);
-    isStart =0;
-  }
-  }
-}
+//     await delay(400);
+//     isStart =0;
+//   }
+//   }
+// }
 
 function gotPoses(poses) {
   // console.log(poses); 
