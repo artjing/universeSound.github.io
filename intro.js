@@ -13,8 +13,8 @@ function setup() {
   text(t,(width-tWith)/2,100);
   
   imageButton = createImg('back.png');
-  imageButton.position((width-220)/2,(height-220)/2,0);
-  imageButton.size(220,220);
+  imageButton.position((width-280)/2,(height-280)/2,0);
+  imageButton.size(280,280);
   
   var button = createButton('Start');
   
@@ -27,7 +27,7 @@ function setup() {
   var W = 150;
   var H = 30;
   button.size(W,H);
-  button.position((width-W)/2, height-120);
+  button.position((width-W)/2, height-100);
   button.mousePressed(jumpToIndex);
   
 }
