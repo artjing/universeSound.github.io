@@ -6,14 +6,14 @@ function setup() {
 
   rectMode(CENTER);
   
-  textSize(30);
+  textSize(36);
   fill(255);
   let t = 'Renosance with universe';
   let tWith = textWidth(t);
   text(t,(width-tWith)/2,100);
   
   
-  textSize(10);
+  textSize(14);
   fill(255,200);
 
   let t1 = 'This is a sound website that can interact with body movements. Please keep a little distance with your camera, and try to move your body. ';
@@ -24,7 +24,7 @@ function setup() {
   text(t1,(width-t1With)/2,(height-100)/2-130);
   text(t11,(width-t11With)/2,(height-100)/2-110);
 
-  textSize(16);
+  textSize(20);
   fill(255);
   let t2 = 'Keep a distance with your camera';
   let t3 = 'Move your body'
@@ -49,7 +49,7 @@ function setup() {
   var W = 150;
   var H = 40;
   button.size(W,H);
-  button.position((width-W)/2, height-120);
+  button.position((width-W)/2, height-150);
   button.mousePressed(jumpToIndex);
   
 }
