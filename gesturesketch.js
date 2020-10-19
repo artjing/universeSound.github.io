@@ -49,6 +49,9 @@ let lastPosePattern;
 var PY, PX;
 var x = [];
 var y = [];
+var PY2, PX2;
+var x2 = [];
+var y2 = [];
 var segLength = 5;
 
 for(var i=0; i<60; i++) {
@@ -375,6 +378,15 @@ function dragSegment( i,  xin,  yin) {
   segment(x[i], y[i], angle);
 }
 
+function dragSegment2( i,  xin,  yin) {
+  var dx = xin - x2[i];
+  var dy = yin - y2[i];
+  var angle = atan2(dy, dx);  
+  x2[i] = xin - cos(angle) * segLength;
+  y2[i] = yin - sin(angle) * segLength;
+  segment(x[i], y[i], angle);
+}
+
 function draw() {
 
   if(PX>0){
@@ -382,7 +394,10 @@ function draw() {
   for(var i=0; i<x.length-1; i++) {
   dragSegment(i+1, x[i], y[i]);
   }
-    
+  dragSegment2(0, PX2, PY2);
+  for(var i=0; i<x2.length-1; i++) {
+  dragSegment2(i+1, x2[i], y2[i]);
+  }
   }
   
   // draw pose
@@ -394,6 +409,8 @@ function draw() {
       
       PX=pose.keypoints[5].position.x;
       PY=pose.keypoints[5].position.y;
+      PX2=pose.keypoints[10].position.x;
+      PY2=pose.keypoints[10].position.y;
   }
     
   for (let i = 0; i < skeleton.length; i++) {
