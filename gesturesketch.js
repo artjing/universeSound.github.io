@@ -1,4 +1,4 @@
-
+// posenet
 let video;
 let poseNet;
 let pose;
@@ -44,16 +44,30 @@ let isStart;
 
 let posePattern;
 let lastPosePattern;
+
+// visual pattern
+var PY, PX;
+var x = [];
+var y = [];
+var segLength = 5;
+
+for(var i=0; i<60; i++) {
+    x[i]=1;
+    y[i]=1;
+}
+
 async function setup() {
   
   createCanvas(windowWidth, windowHeight);
-  background(0);
+  
+  rectMode(CENTER);
 
-  rSlider = createSlider(0, 255, 0);
-  gSlider = createSlider(0, 255, 0);
-  bSlider = createSlider(0, 255, 0);
+  background(0);
+  
+  noFill();
 
   video = createCapture(VIDEO);
+  video.size(windowWidth, windowHeight)
   video.hide();
   
   poseNet = ml5.poseNet(video, modelLoaded);
@@ -113,9 +127,7 @@ async function setup() {
   saturn.position(-100,-100);
   saturn.size(50,50);
   saturn.mousePressed(saturnClicked);
-  
 
-  
   uranus = createImg('images/Uranus.png');
   uranus.position(-100,-100);
   uranus.size(50,50);
@@ -173,72 +185,7 @@ async function setup() {
   effect.connect(reverb);
   reverb.connect(Tone.Master);
   ready = true;
-  
-}
-
-function draw() {
-  
-  
-  push();
-
-  //image(video, width - 150, 0, 100, 80);
-  background(0);
-  
-        
-  // draw rect
-  fill(255);
-  rect(35, iconH+200, 6, 50);
-  
-  // title
-  textSize(32);
-  fill(255);
-  text("Resonance & Universe", 50,60);
-  
-  textSize(12);
-  fill(255,80);
-  text("Dancing", 50,80);
-  text("Following the sound", 50,95);
-
-  translate(video.width, 0);
-  scale(-1, 1);
-  //noFill()
-  
-  // draw pose
-  if (pose) {
-
-  for (let i = 0; i < pose.keypoints.length; i++) {
-      let x = pose.keypoints[i].position.x;
-      let y = pose.keypoints[i].position.y;
-      fill(255,255,255,random(255));
-      //ellipse(x,y,random(50),random(50));
-      rect(x, y, random(30), random(100));
-  }
-    
-for (let i = 0; i < skeleton.length; i++) {
-      let a = skeleton[i][0];
-      let b = skeleton[i][1];
-      strokeWeight(1);
-      stroke(255);
-      fill(255,50);
-      line(a.position.x, a.position.y,b.position.x,b.position.y);            translate(0,-10);
-      
-      strokeWeight(0.5);
-      noFill();
-      //square(a.position.x, a.position.y, random(60));
-      fill(random(200,255));
-      rect(a.position.x, a.position.y, 3,30);
-      //bezier(a.position.x, a.position.y,a.position.x + random(50), a.position.y+random(100),b.position.x-random(50),b.position.y -random(100) , b.position.x, b.position.y);
-  
-  
-  }
-
-    let wristR = pose.rightWrist.x;
-    let wristL = pose.leftWrist.x;
-    
-  }
-  pop();
-
-}
+}  
 
 function brainLoaded() {
   console.log('pose predicting ready!');
@@ -269,8 +216,9 @@ async function gotResult(error, results) {
   }
   console.log(poseLabel);
   
-  setTimeout(predictColor, 100);
+  predictColor();
   
+  print(results)
   posePattern = poseLabel;
   if(lastPosePattern == posePattern && isStart ===0) {
   }else{
@@ -296,14 +244,6 @@ function modelLoaded() {
   console.log('poseNet ready');
 }
 
-
-function freqFromMouse(x, y) {
-  return map(x, 0, width - 1, freq2 * 0.9, freq2 * 1.1);
-}
-
- function mousePressed () {
-  
-}
 
 function delay(time) {
   return new Promise((resolve, reject) => {
@@ -402,7 +342,6 @@ function soundisClicked(){
 
 function linePageClicked(){
     window.location.href="index.html"
-
 }
 
 function gesturePageClicked(){
@@ -413,4 +352,76 @@ function gesturePageClicked(){
 function drumPageClicked(){
     window.location.href="drumpage.html"
 
+}
+
+function segment( x, y,  a) {
+  strokeWeight(2);
+  stroke(255,50);
+  
+  push();
+  translate(x, y);
+  rotate(a);
+  line(0, 0, segLength, 0);
+  pop();
+  
+}
+
+function dragSegment( i,  xin,  yin) {
+  var dx = xin - x[i];
+  var dy = yin - y[i];
+  var angle = atan2(dy, dx);  
+  x[i] = xin - cos(angle) * segLength;
+  y[i] = yin - sin(angle) * segLength;
+  segment(x[i], y[i], angle);
+}
+
+function draw() {
+
+  if(PX>0){
+  dragSegment(0, PX, PY);
+  for(var i=0; i<x.length-1; i++) {
+  dragSegment(i+1, x[i], y[i]);
+  }
+    
+  }
+  
+  // draw pose
+  if (pose) {
+  for (let i = 0; i < pose.keypoints.length; i++) {
+      let x = pose.keypoints[i].position.x;
+      let y = pose.keypoints[i].position.y;
+      fill(255,255,255,random(255));    
+      
+      PX=pose.keypoints[5].position.x;
+      PY=pose.keypoints[5].position.y;
+  }
+    
+  for (let i = 0; i < skeleton.length; i++) {
+      let a = skeleton[i][0];
+      let b = skeleton[i][1];
+      strokeWeight(1);
+      stroke(255);
+      fill(255,50);
+  }
+    let wristR = pose.rightWrist.x;
+    let wristL = pose.leftWrist.x;
+  }
+  
+    // draw rect
+  fill(255);
+  rect(35, iconH+224, 6, 50);
+  
+  // title
+  textSize(32);
+  fill(255);
+  // text("Resonance & Universe", 50,60);
+  
+  textSize(12);
+  fill(255,80);
+  // text("Body Movement", 50,80);
+  // text("With the sound", 50,95);
+  translate(video.width, 0);
+  scale(-2, 2);
+  //noFill()
+  
 }
