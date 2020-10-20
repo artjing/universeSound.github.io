@@ -57,6 +57,8 @@ var segLength = 5;
 for(var i=0; i<60; i++) {
     x[i]=1;
     y[i]=1;
+    x2[i]=1;
+    y2[i]=1;
 }
 
 async function setup() {
@@ -379,25 +381,25 @@ function dragSegment( i,  xin,  yin) {
 }
 
 function dragSegment2( i,  xin,  yin) {
-  var dx = xin - x2[i];
-  var dy = yin - y2[i];
-  var angle = atan2(dy, dx);  
+  var dx2 = xin - x2[i];
+  var dy2 = yin - y2[i];
+  var angle = atan2(dy2, dx2);  
   x2[i] = xin - cos(angle) * segLength;
   y2[i] = yin - sin(angle) * segLength;
-  segment(x[i], y[i], angle);
+  segment(x2[i], y2[i], angle);
 }
 
 function draw() {
 
   if(PX>0){
-  dragSegment(0, PX, PY);
-  for(var i=0; i<x.length-1; i++) {
-  dragSegment(i+1, x[i], y[i]);
-  }
-  dragSegment2(0, PX2, PY2);
-  for(var i=0; i<x2.length-1; i++) {
-  dragSegment2(i+1, x2[i], y2[i]);
-  }
+    dragSegment(0, PX, PY);
+    for(var i=0; i<x.length-1; i++) {
+      dragSegment(i+1, x[i], y[i]); 
+    }
+    dragSegment2(0, PX2, PY2);
+    for(var i=0; i<x2.length-1; i++) {
+      dragSegment2(i+1, x2[i], y2[i]);
+    }
   }
   
   // draw pose
