@@ -361,12 +361,14 @@ function drumPageClicked(){
 
 function segment( x, y,  a) {
   strokeWeight(2);
-  stroke(255,50);
+  stroke(255,10);
   
   push();
   translate(x, y);
   rotate(a);
   line(0, 0, segLength, 0);
+  line(0, 0, segLength+20,0);
+
   pop();
   
 }
@@ -396,10 +398,10 @@ function draw() {
     for(var i=0; i<x.length-1; i++) {
       dragSegment(i+1, x[i], y[i]); 
     }
-    dragSegment2(0, PX2, PY2);
-    for(var i=0; i<x2.length-1; i++) {
-      dragSegment2(i+1, x2[i], y2[i]);
-    }
+    // dragSegment2(0, PX2, PY2);
+    // for(var i=0; i<x2.length-1; i++) {
+    //   dragSegment2(i+1, x2[i], y2[i]);
+    // }
   }
   
   // draw pose
