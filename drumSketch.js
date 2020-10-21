@@ -276,10 +276,10 @@ for (let i = 0; i < skeleton.length; i++) {
   // draw pose
   if (pose) {
   wristRX = pose.rightWrist.x*2;  
-  wristRY = pose.rightWrist.y;
+  wristRY = pose.rightWrist.y*2;
 
   wristLX = pose.leftWrist.x*2;
-  wristLY = pose.leftWrist.y;
+  wristLY = pose.leftWrist.y*2;
     
   fill(255,255,255,random(255));
   ellipse(wristRX,wristRY,50,50);
