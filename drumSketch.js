@@ -127,6 +127,7 @@ async function setup() {
   // video setting
 
   video = createCapture(VIDEO);
+  video.size(windowWidth, windowHeight);
   video.hide();
 
   //image(video, width - 150, 0, width, height);
