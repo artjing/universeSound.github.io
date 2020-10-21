@@ -360,14 +360,14 @@ function drumPageClicked(){
 }
 
 function segment( x, y,  a) {
-  strokeWeight(2);
+  strokeWeight(1);
   stroke(255,10);
   
   push();
   translate(x, y);
   rotate(a);
   line(0, 0, segLength, 0);
-  line(0, 0, segLength+20,0);
+  //line(0, 0, segLength+20,0);
 
   pop();
   
